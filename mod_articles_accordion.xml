@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_articles_accordion</name>
+	<author>Dan Nilsson</author>
+	<creationDate>December 2016</creationDate>
+	<copyright>Copyright (C) 2016 - Dan Nilsson. All rights reserved.</copyright>
+	<license>none</license>
+	<authorEmail>mail@dannilsson.se</authorEmail>
+	<authorUrl>dannilsson.se</authorUrl>
+	<version>1.0.0</version>
+	<description>MOD_ARTICLES_ACCORDION_XML_DESCRIPTION</description>
+	<files>
+		<folder>tmpl</folder>
+		<filename module="mod_articles_accordion">mod_articles_accordion.php</filename>
+		<filename>helper.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_articles_accordion.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_articles_accordion.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_ACCORDION" />
+	<config>
+		<fields name="params">
+			<fieldset name="filtering" label="MOD_ARTICLES_ACCORDION_FIELD_GROUP_FILTERING_LABEL">
+
+				<field
+					name="count"
+					type="text"
+					label="MOD_ARTICLES_ACCORDION_FIELD_COUNT_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_COUNT_DESC"
+					default="0"
+				/>
+
+				<field
+					name="show_front"
+					type="list"
+					label="MOD_ARTICLES_ACCORDION_FIELD_SHOWFEATURED_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_SHOWFEATURED_DESC"
+					default="show"
+				>
+					<option value="show">JSHOW</option>
+					<option value="hide">JHIDE</option>
+					<option value="only">MOD_ARTICLES_ACCORDION_OPTION_ONLYFEATURED_VALUE</option>
+				</field>
+
+				<field
+					name="filteringspacer1"
+					type="spacer"
+					hr="true"
+				/>
+
+				<field
+					name="category_filtering_type"
+					type="radio"
+					label="MOD_ARTICLES_ACCORDION_FIELD_CATFILTERINGTYPE_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_CATFILTERINGTYPE_DESC"
+					class="btn-group btn-group-yesno"
+					default="1"
+				>
+					<option value="1">MOD_ARTICLES_ACCORDION_OPTION_INCLUSIVE_VALUE</option>
+					<option value="0">MOD_ARTICLES_ACCORDION_OPTION_EXCLUSIVE_VALUE</option>
+				</field>
+
+				<field
+					name="catid"
+					type="category"
+					label="JCATEGORY"
+					description="MOD_ARTICLES_ACCORDION_FIELD_ACCORDION_DESC"
+					extension="com_content"
+					multiple="true"
+					size="5"
+				>
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+
+				<field
+					name="filteringspacer2"
+					type="spacer"
+					hr="true"
+				/>
+
+				<field
+					name="excluded_articles"
+					type="textarea"
+					label="MOD_ARTICLES_ACCORDION_FIELD_EXCLUDEDARTICLES_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_EXCLUDEDARTICLES_DESC"
+					cols="10"
+					rows="3"
+				/>
+
+				<field
+					name="filteringspacer5"
+					type="spacer"
+					hr="true"
+				/>
+
+				<field
+					name="date_filtering"
+					type="list"
+					label="MOD_ARTICLES_ACCORDION_FIELD_DATEFILTERING_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_DATEFILTERING_DESC"
+					default="off"
+				>
+					<option value="off">MOD_ARTICLES_ACCORDION_OPTION_OFF_VALUE</option>
+					<option value="range">MOD_ARTICLES_ACCORDION_OPTION_DATERANGE_VALUE</option>
+					<option value="relative">MOD_ARTICLES_ACCORDION_OPTION_RELATIVEDAY_VALUE</option>
+				</field>
+
+				<field
+					name="date_field"
+					type="list"
+					label="MOD_ARTICLES_ACCORDION_FIELD_DATERANGEFIELD_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_DATERANGEFIELD_DESC"
+					default="a.created"
+				>
+					<option value="a.created">MOD_ARTICLES_ACCORDION_OPTION_CREATED_VALUE</option>
+					<option value="a.modified">MOD_ARTICLES_ACCORDION_OPTION_MODIFIED_VALUE</option>
+					<option value="a.publish_up">MOD_ARTICLES_ACCORDION_OPTION_STARTPUBLISHING_VALUE</option>
+				</field>
+
+				<field
+					name="start_date_range"
+					type="calendar"
+					label="MOD_ARTICLES_ACCORDION_FIELD_STARTDATE_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_STARTDATE_DESC"
+					format="%Y-%m-%d %H:%M:%S"
+					size="22"
+					filter="user_utc"
+				/>
+
+				<field
+					name="end_date_range"
+					type="calendar"
+					label="MOD_ARTICLES_ACCORDION_FIELD_ENDDATE_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_ENDDATE_DESC"
+					format="%Y-%m-%d %H:%M:%S"
+					size="22"
+					filter="user_utc"
+				/>
+
+				<field
+					name="relative_date"
+					type="text"
+					label="MOD_ARTICLES_ACCORDION_FIELD_RELATIVEDATE_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_RELATIVEDATE_DESC"
+					default="30"
+				/>
+
+			</fieldset>
+
+			<fieldset name="ordering" label="MOD_ARTICLES_ACCORDION_FIELD_GROUP_ORDERING_LABEL">
+
+				<field
+					name="article_ordering"
+					type="list"
+					label="MOD_ARTICLES_ACCORDION_FIELD_ARTICLEORDERING_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_ARTICLEORDERING_DESC"
+					default="a.title"
+				>
+					<option value="a.ordering">MOD_ARTICLES_ACCORDION_OPTION_ORDERING_VALUE</option>
+					<option value="fp.ordering">MOD_ARTICLES_ACCORDION_OPTION_ORDERINGFEATURED_VALUE</option>
+					<option value="a.hits">MOD_ARTICLES_ACCORDION_OPTION_HITS_VALUE</option>
+					<option value="a.title">JGLOBAL_TITLE</option>
+					<option value="a.id">MOD_ARTICLES_ACCORDION_OPTION_ID_VALUE</option>
+					<option value="a.created">MOD_ARTICLES_ACCORDION_OPTION_CREATED_VALUE</option>
+					<option value="modified">MOD_ARTICLES_ACCORDION_OPTION_MODIFIED_VALUE</option>
+					<option value="publish_up">MOD_ARTICLES_ACCORDION_OPTION_STARTPUBLISHING_VALUE</option>
+					<option value="a.publish_down">MOD_ARTICLES_ACCORDION_OPTION_FINISHPUBLISHING_VALUE</option>
+					<option value="random">MOD_ARTICLES_ACCORDION_OPTION_RANDOM_VALUE</option>
+				</field>
+
+				<field
+					name="article_ordering_direction"
+					type="list"
+					label="MOD_ARTICLES_ACCORDION_FIELD_ARTICLEORDERINGDIR_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_ARTICLEORDERINGDIR_DESC"
+					default="ASC"
+				>
+					<option value="DESC">MOD_ARTICLES_ACCORDION_OPTION_DESCENDING_VALUE</option>
+					<option value="ASC">MOD_ARTICLES_ACCORDION_OPTION_ASCENDING_VALUE</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="display" label="MOD_ARTICLES_ACCORDION_FIELD_GROUP_DISPLAY_LABEL">
+
+				<field
+					name="show_introtext"
+					type="radio"
+					label="MOD_ARTICLES_ACCORDION_FIELD_SHOWINTROTEXT_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_SHOWINTROTEXT_DESC"
+					default="0"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="1">JSHOW</option>
+					<option value="0">JHIDE</option>
+				</field>
+
+				<field
+					name="introtext_limit"
+					type="text"
+					label="MOD_ARTICLES_ACCORDION_FIELD_INTROTEXTLIMIT_LABEL"
+					description="MOD_ARTICLES_ACCORDION_FIELD_INTROTEXTLIMIT_DESC"
+					default="1000"
+				/>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					rows="3"
+				/>
+
+				<field
+					name="owncache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+					default="1"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+					default="900"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
