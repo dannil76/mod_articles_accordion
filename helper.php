@@ -122,7 +122,7 @@ abstract class ModArticlesAccordionHelper
 		// $show_date        = $params->get('show_date', 0);
 		// $show_date_field  = $params->get('show_date_field', 'created');
 		// $show_date_format = $params->get('show_date_format', 'Y-m-d H:i:s');
-		// $show_category    = $params->get('show_category', 0);
+		$show_category    = $params->get('show_category', 0);
 		// $show_hits        = $params->get('show_hits', 0);
 		// $show_author      = $params->get('show_author', 0);
 		$show_introtext   = $params->get('show_introtext', 0);

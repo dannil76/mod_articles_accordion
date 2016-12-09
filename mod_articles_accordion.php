@@ -1,6 +1,5 @@
 <?php defined('_JEXEC') or die;
 
-// Include the helper functions only once
 JLoader::register( 'ModArticlesAccordionHelper', __DIR__ . '/helper.php' );
 
 $input = JFactory::getApplication()->input;
