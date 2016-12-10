@@ -11,6 +11,7 @@
 	<description>MOD_ARTICLES_ACCORDION_XML_DESCRIPTION</description>
 	<files>
 		<folder>tmpl</folder>
+		<folder>language</folder>
 		<filename module="mod_articles_accordion">mod_articles_accordion.php</filename>
 		<filename>helper.php</filename>
 	</files>

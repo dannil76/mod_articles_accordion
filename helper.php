@@ -27,8 +27,6 @@ abstract class ModArticlesAccordionHelper
 		$authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
 		$articles->setState('filter.access', $access);
 
-		// Prep for Normal or Dynamic Modes
-		// $mode = $params->get('mode', 'normal');
 		$catids = $params->get('catid');
 		$articles->setState('filter.category_id.include', (bool) $params->get('category_filtering_type', 1));
 

@@ -2,16 +2,14 @@
 
 JLoader::register( 'ModArticlesAccordionHelper', __DIR__ . '/helper.php' );
 
-$input = JFactory::getApplication()->input;
-
-$idbase = $params->get('catid');
+// $input = JFactory::getApplication()->input;
 
 $cacheparams               = new stdClass;
 $cacheparams->cachemode    = 'id';
 $cacheparams->class        = 'ModArticlesAccordionHelper';
 $cacheparams->method       = 'getList';
 $cacheparams->methodparams = $params;
-$cacheparams->modeparams   = md5( serialize( array( $idbase, $module->module, $module->id ) ) );
+$cacheparams->modeparams   = md5( serialize( array( $params->get('catid'), $module->module, $module->id ) ) );
 
 $list = JModuleHelper::moduleCache( $module, $params, $cacheparams );
 
